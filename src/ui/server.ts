@@ -4,8 +4,9 @@ import { Agent } from "../agents/protocol/types.ts";
 import { runSuite } from "../benchmark/runner.ts";
 import { getChallenge, listChallenges, loadLibrary } from "../challenges/library.ts";
 import { BenchmarkJobStore } from "./benchmark-jobs.ts";
+import { fileURLToPath } from "node:url";
 
-const CHALLENGES_DIR = new URL("../../challenges/", import.meta.url).pathname;
+const CHALLENGES_DIR = fileURLToPath(new URL("../../challenges/", import.meta.url));
 const serverJobs = new BenchmarkJobStore();
 
 const AGENT_KINDS = PROVIDER_KEYS;
