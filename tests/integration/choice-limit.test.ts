@@ -1,11 +1,12 @@
 import { afterEach, describe, expect, test } from "bun:test";
 import { Chess } from "chess.js";
+import { fileURLToPath } from "node:url";
 import { JevAgent } from "../../src/agents/agent-adapters/jev.ts";
 import { legalMovesWithDescriptions } from "../../src/agents/protocol/reasoning.ts";
 import { runAgentChallenge } from "../../src/agents/runner.ts";
 import { loadLibrary } from "../../src/challenges/library.ts";
 
-const CORPUS = new URL("../../challenges/", import.meta.url).pathname;
+const CORPUS = fileURLToPath(new URL("../../challenges/", import.meta.url));
 const SAVED_ENV = { ...process.env };
 
 interface SeenBody {

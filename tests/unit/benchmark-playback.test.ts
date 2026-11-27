@@ -1,4 +1,5 @@
 import { describe, expect, test } from "bun:test";
+import { fileURLToPath } from "node:url";
 import { benchmarkFrames } from "../../src/ui/benchmark-playback.ts";
 import { BenchmarkJobStore } from "../../src/ui/benchmark-jobs.ts";
 import { runSuite } from "../../src/benchmark/runner.ts";
@@ -7,7 +8,7 @@ import { ChallengeRun } from "../../src/engine/types.ts";
 import { MockAgent } from "../fixtures/mock-agent.ts";
 import { SOLUTIONS } from "../fixtures/solutions.ts";
 
-const { challenges } = await loadLibrary(new URL("../fixtures/challenges/", import.meta.url).pathname);
+const { challenges } = await loadLibrary(fileURLToPath(new URL("../fixtures/challenges/", import.meta.url)));
 
 describe("live benchmark playback", () => {
   test("snapshots begin before moves and advance across challenges without losing plies", async () => {

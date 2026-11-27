@@ -2,6 +2,7 @@
 import { Chess } from "chess.js";
 import { mkdir } from "node:fs/promises";
 import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { solutionMoves, verifyMate } from "../challenges/mate-verifier.ts";
 import { LexicographicDefender } from "../engine/defender.ts";
 import { validateChallenge } from "../engine/validation.ts";
@@ -13,7 +14,7 @@ export interface PuzzleRow {
 export const QUOTAS = [[12, 11, 11], [11, 12, 10], [11, 10, 12]];
 export const difficultyFor = (rating: number) => rating < 1200 ? "easy" : rating < 1800 ? "medium" : "hard";
 const difficulties = ["easy", "medium", "hard"] as const;
-const ROOT = new URL("../../", import.meta.url).pathname;
+const ROOT = fileURLToPath(new URL("../../", import.meta.url));
 
 async function main() {
   const sourceIndex = process.argv.indexOf("--source");

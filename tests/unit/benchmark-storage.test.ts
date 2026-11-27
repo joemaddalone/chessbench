@@ -1,4 +1,5 @@
 import { describe, expect, test } from "bun:test";
+import { fileURLToPath } from "node:url";
 import { getChallenge, loadLibrary } from "../../src/challenges/library.ts";
 import { runSuite } from "../../src/benchmark/runner.ts";
 import {
@@ -16,7 +17,7 @@ function memoryStorage() {
   };
 }
 
-const { challenges } = await loadLibrary(new URL("../fixtures/challenges/", import.meta.url).pathname);
+const { challenges } = await loadLibrary(fileURLToPath(new URL("../fixtures/challenges/", import.meta.url)));
 const challenge = getChallenge(challenges, "mate-in-1-001");
 const report = await runSuite({
   suiteId: "saved-1",

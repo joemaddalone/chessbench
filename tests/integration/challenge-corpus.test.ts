@@ -1,11 +1,12 @@
 import { describe, expect, test } from "bun:test";
 import { Chess } from "chess.js";
+import { fileURLToPath } from "node:url";
 import { loadLibrary } from "../../src/challenges/library.ts";
 import { MateVerification, validateMateProof, verifyMate } from "../../src/challenges/mate-verifier.ts";
 import { PuzzleRow, QUOTAS, difficultyFor } from "../../src/cli/import-challenges.ts";
 import { EngineRun } from "../../src/engine/run.ts";
 
-const directory = new URL("../../challenges/", import.meta.url).pathname;
+const directory = fileURLToPath(new URL("../../challenges/", import.meta.url));
 const { challenges, errors } = await loadLibrary(directory);
 const archive = await Bun.file(`${directory}/provenance/lichess-source.json`).json() as { rows: PuzzleRow[]; sourceSha256: string };
 const proofs = await Bun.file(`${directory}/provenance/mate-proofs.json`).json() as Record<string, MateVerification>;
