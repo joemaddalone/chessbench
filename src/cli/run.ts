@@ -9,8 +9,9 @@ import { getChallenge, listChallenges, loadLibrary } from "../challenges/library
 import { replay } from "../engine/replay.ts";
 import { EngineRun } from "../engine/run.ts";
 import { Challenge, ChallengeRun } from "../engine/types.ts";
+import { fileURLToPath } from "node:url";
 
-const CHALLENGES_DIR = new URL("../../challenges/", import.meta.url).pathname;
+const CHALLENGES_DIR = fileURLToPath(new URL("../../challenges/", import.meta.url));
 
 function usage(): never {
   console.error(
